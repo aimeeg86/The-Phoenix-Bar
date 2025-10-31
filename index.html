@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Phoenix Bar</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preload" as="image" href="phoenix-hero.jpg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="oak">
+  <div class="container">
+    <h1>The Phoenix Bar</h1>
+  </div>
+</header>
+
+<div class="section container">
+  <img class="hero" id="heroImg" src="phoenix-hero.jpg" alt="The Phoenix Bar exterior">
+</div>
+
+<section class="section">
+  <div class="oak-banner"><b>About Us</b></div>
+  <div class="card" id="aboutCard">
+    <p id="aboutText">Welcome to The Phoenix Bar...</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="oak-banner"><b>Drink Offers</b></div>
+  <div class="card">
+    <ul id="offersList">
+      <li>Happy Hour Mon–Fri 4–6pm</li>
+      <li>2-for-£10 cocktails every Friday</li>
+      <li>Local ales on rotation</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="oak-banner"><b>What’s On</b></div>
+  <div class="card" id="whatsOn"></div>
+</section>
+
+<section class="section">
+  <div class="oak-banner"><b>Live Music</b></div>
+  <div class="gigs" id="gigs"></div>
+</section>
+
+<section class="section">
+  <div class="oak-banner"><b>Football on TV</b></div>
+  <div id="fixtures"></div>
+</section>
+
+<section class="section">
+  <div class="oak-banner"><b>Opening Times</b></div>
+  <div class="card" id="hours"></div>
+</section>
+
+<section class="section">
+  <div class="oak-banner"><b>Gallery</b></div>
+  <div class="gallery" id="gallery"></div>
+</section>
+
+<section class="section">
+  <div class="oak-banner"><b>Videos</b></div>
+  <div id="videos" class="gallery"></div>
+</section>
+
+<footer class="footer">
+  <div class="container"><small>© <span id="yr"></span> The Phoenix Bar · Royal Wootton Bassett</small></div>
+</footer>
+
+<button id="editLock" aria-label="Admin lock">🔒</button>
+<div class="modal-backdrop" id="mbg"></div>
+<div class="modal" id="adminModal" aria-modal="true" role="dialog">
+  <div class="closeX" id="closeX">✕</div>
+  <h2>Admin</h2>
+  <p class="help">Enter passphrase to unlock editing. (Hint: Nugget07)</p>
+  <div class="row">
+    <input id="passInput" type="text" placeholder="Enter passphrase">
+    <button class="btn" id="unlockBtn">Unlock</button>
+  </div>
+  <p id="lockState" class="help">Locked</p>
+
+  <section id="adminSections" class="hidden">
+    <label>About text</label>
+    <textarea id="aboutField"></textarea>
+
+    <label>Drink offers (one per line)</label>
+    <textarea id="offersField"></textarea>
+
+    <label>What’s On (Mon–Sun, one per line)</label>
+    <textarea id="whatsOnField"></textarea>
+
+    <div class="row">
+      <div>
+        <label>Opening Times (Mon–Sun, one per line)</label>
+        <textarea id="hoursField"></textarea>
+      </div>
+      <div>
+        <label>Contact</label>
+        <input id="phoneField" type="text" placeholder="Phone">
+        <input id="fbTitleField" type="text" placeholder="Facebook title (optional)">
+        <input id="fbUrlField" type="url" placeholder="Facebook URL">
+        <input id="addrField" type="text" placeholder="Address">
+      </div>
+    </div>
+
+    <section>
+      <h3>Live Music (up to 4 posters)</h3>
+      <label>Upload posters (max 4)</label>
+      <input id="gigFiles" type="file" accept="image/*" multiple>
+      <div class="row">
+        <input id="gig1t" type="text" placeholder="Gig 1 title"><input id="gig1d" type="text" placeholder="Gig 1 date & time"><input id="gig1b" type="text" placeholder="Gig 1 blurb">
+        <input id="gig2t" type="text" placeholder="Gig 2 title"><input id="gig2d" type="text" placeholder="Gig 2 date & time"><input id="gig2b" type="text" placeholder="Gig 2 blurb">
+        <input id="gig3t" type="text" placeholder="Gig 3 title"><input id="gig3d" type="text" placeholder="Gig 3 date & time"><input id="gig3b" type="text" placeholder="Gig 3 blurb">
+        <input id="gig4t" type="text" placeholder="Gig 4 title"><input id="gig4d" type="text" placeholder="Gig 4 date & time"><input id="gig4b" type="text" placeholder="Gig 4 blurb">
+      </div>
+    </section>
+
+    <section>
+      <h3>Football Fixtures (next 3)</h3>
+      <div class="row">
+        <input id="f1h" type="text" placeholder="Home 1"><input id="f1a" type="text" placeholder="Away 1"><input id="f1t" type="text" placeholder="Sun 3:00 PM"><input id="f1c" type="text" placeholder="Sky Sports">
+        <input id="f2h" type="text" placeholder="Home 2"><input id="f2a" type="text" placeholder="Away 2"><input id="f2t" type="text" placeholder="Mon 5:30 PM"><input id="f2c" type="text" placeholder="BT Sport">
+        <input id="f3h" type="text" placeholder="Home 3"><input id="f3a" type="text" placeholder="Away 3"><input id="f3t" type="text" placeholder="Tue 2:00 PM"><input id="f3c" type="text" placeholder="Sky Sports">
+      </div>
+    </section>
+
+    <section>
+      <h3>Hero & Gallery</h3>
+      <label>Update hero photo</label>
+      <input id="heroFile" type="file" accept="image/*">
+      <label>Add gallery photos</label>
+      <input id="galleryFiles" type="file" accept="image/*" multiple>
+    </section>
+
+    <section>
+      <h3>Videos</h3>
+      <label>Add videos (upload from phone)</label>
+      <input id="videoFiles" type="file" accept="video/*" multiple>
+    </section>
+
+    <div style="margin-top:12px">
+      <button class="btn" id="saveBtn">Save all</button>
+      <button class="btn ghost" id="clearBtn">Clear local data</button>
+    </div>
+    <p class="help">All edits save only on your device (localStorage & IndexedDB). Visitors won’t see the lock or modal.</p>
+  </section>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
